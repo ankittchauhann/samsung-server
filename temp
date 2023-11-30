@@ -1,0 +1,20 @@
+{
+    "_id": {
+        "$oid": "6565debfa6f792392483c251"
+    },
+    "order_id": {
+        "$oid": "5e0e6a804888946fa61a1976"
+    },
+    "board_id": "board_id12",
+    "source": {
+        "location": "RACK_1",
+        "tray": "TRAY_1",
+        "slot": "SLOT_1"
+    },
+    "destination": {
+        "location": "RLIB_2",
+        "tray": "TRAY_2",
+        "slot": "SLOT_1"
+    },
+    "status": "QUEUED"
+}
