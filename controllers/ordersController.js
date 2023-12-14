@@ -23,7 +23,7 @@ const createOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
-    const orders = await Order.find().sort("order_id");
+    const orders = await Order.find({status:"QUEUED"});
     res.send(orders);
   } catch (err) {
     res.status(400).send(err.errors);
