@@ -1,4 +1,5 @@
 {
     "name": "Anscer Robotics (Samsung server)",
-    "db": "mongodb://localhost:27017/samsung-server"
+    "db": "mongodb+srv://root:2456824568@cluster0.o0jyvcb.mongodb.net/samsung-server",
+    "retry": true
 }

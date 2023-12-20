@@ -53,7 +53,14 @@ const orderSchema = new mongoose.Schema({
     minlength: 3,
     maxlength: 255,
     default: "QUEUED",
-    Enum: ["QUEUED", "PROGRESSING", "COMPLETED", "ABORTED"],
+    Enum: [
+      "QUEUED",
+      "PROGRESSING",
+      "COMPLETED",
+      "ABORTED",
+      "PICK_ABORT",
+      "PLACE_ABORT",
+    ],
   },
 });
 
@@ -77,7 +84,14 @@ const updateSchema = Joi.object({
     .min(3)
     .max(255)
     .default("QUEUED")
-    .valid("QUEUED", "PROGRESSING", "COMPLETED", "ABORTED"),
+    .valid(
+      "QUEUED",
+      "PROGRESSING",
+      "COMPLETED",
+      "ABORTED",
+      "PICK_ABORT",
+      "PLACE_ABORT"
+    ),
 });
 
 const orderValidator = (order) => {
