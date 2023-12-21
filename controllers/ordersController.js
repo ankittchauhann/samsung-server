@@ -6,7 +6,6 @@ const {
 const _ = require("lodash");
 const express = require("express");
 const router = express.Router();
-const config = require("config");
 
 const createOrder = async (req, res) => {
   try {
@@ -42,13 +41,10 @@ const updateOrder = async (req, res) => {
         : req.body.status === "PLACE_ABORT"
         ? 408
         : status;
-
-    if (req.body.status === "COMPLETED" && Boolean(config.get("retry"))) {
-      const retryCondition = Math.random() < 0.5;
-      if (retryCondition) {
-        req.body.status = "QUEUED";
-        status = 405;
-      }
+    const retry = parseBoolean(req.query.retry);
+    console.log(retry);
+    if (req.body.status === "COMPLETED" && retry) {
+      status = 405;
     }
 
     const order = await Order.findByIdAndUpdate(
@@ -72,6 +68,12 @@ const deleteOrder = async (req, res) => {
   } catch (err) {
     res.status(400).send(err.errors);
   }
+};
+
+const parseBoolean = (bool) => {
+  if (bool === "true") return true;
+  if (bool === "false") return false;
+  return bool;
 };
 
 module.exports = {
